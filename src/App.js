@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Header from "./Header";
+import City from "./City";
+import Buttons from "./Buttons";
+import Guide from "./Guide";
+import Warning from "./Warning";
 
 function App() {
+  ///////////////////////////////////////////////////
+  const [city, setCity] = useState("");
+  const [category, setCategory] = useState("");
+
+  const selectCity = (item) => {
+    setCity(item);
+  };
+
+  const selectCategory = (item) => {
+    setCategory(item);
+  };
+
+  ///////////////
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <City selectCity={selectCity} />
+      {!city && category ? <Warning />: null}
+      <Buttons selectCategory={selectCategory} />
+      {city && category ? <Guide city={city} category={category} /> : null}
     </div>
   );
 }
