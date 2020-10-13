@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <Header />
       <City selectCity={selectCity} />
-      {!city && category ? <Warning />: null}
+      {!city && category && <Warning />}
       <Buttons selectCategory={selectCategory} />
       {city && category ? <Guide city={city} category={category} /> : null}
     </div>
